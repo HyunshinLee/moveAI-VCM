@@ -1,0 +1,1100 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/2435j1",
+    "id": "2435j1",
+    "slide": 7,
+    "layoutId": "d3424182-be43-4f38-8ac4-11a0ef8f0345",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "522530e4-9382-48dc-a73e-2352117d475d",
+    "masterLayoutName": "Master",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "d3424182-be43-4f38-8ac4-11a0ef8f0345",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "522530e4-9382-48dc-a73e-2352117d475d",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "522530e4-9382-48dc-a73e-2352117d475d",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ryh83yxs",
+      "id": "1",
+      "bbox": [
+        64,
+        34,
+        360,
+        24
+      ],
+      "geometry": "rect",
+      "text": "RE-SCHEDULING ENGINE",
+      "textPreview": "RE-SCHEDULING ENGINE",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#91723A",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "RE-SCHEDULING ENGINE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "RE-SCHEDULING ENGINE",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#91723A",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "RE-SCHEDULING ENGINE",
+              "fontSize": 13,
+              "color": "#91723A",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/szqpw3yx",
+      "id": "2",
+      "bbox": [
+        64,
+        66,
+        1150,
+        55
+      ],
+      "geometry": "rect",
+      "text": "New truck은 지연 위험 업무를 1…N대 차량에 이전한다",
+      "textPreview": "New truck은 지연 위험 업무를 1…N대 차량에 이전한다",
+      "resolvedFontSize": 36,
+      "resolvedTextStyle": {
+        "fontSize": 36,
+        "typeface": "+mn-lt",
+        "color": "#202124",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "New truck은 지연 위험 업무를 1…N대 차량에 이전한다"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "New truck은 지연 위험 업무를 1…N대 차량에 이전한다",
+          "resolvedTextStyle": {
+            "fontSize": 36,
+            "color": "#202124",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "New truck은 지연 위험 업무를 1…N대 차량에 이전한다",
+              "fontSize": 36,
+              "color": "#202124",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/t0zq58fi",
+      "id": "3",
+      "bbox": [
+        64,
+        130,
+        1152,
+        3
+      ],
+      "geometry": "rect",
+      "fillColor": "#10069F",
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/e18rydg3",
+      "id": "4",
+      "bbox": [
+        75,
+        190,
+        205,
+        70
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#CFCFCF",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/f2187ixo",
+      "id": "5",
+      "bbox": [
+        85,
+        202,
+        185,
+        50
+      ],
+      "geometry": "rect",
+      "text": "업무별 지연 위험도",
+      "textPreview": "업무별 지연 위험도",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#202124",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "업무별 지연 위험도"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "업무별 지연 위험도",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#202124",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "업무별 지연 위험도",
+              "fontSize": 18,
+              "color": "#202124",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gna90ny9",
+      "id": "6",
+      "bbox": [
+        365,
+        190,
+        215,
+        70
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#E8E8FA",
+      "lineColor": "#10069F",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1ojq98fu",
+      "id": "7",
+      "bbox": [
+        375,
+        202,
+        195,
+        50
+      ],
+      "geometry": "rect",
+      "text": "이전 가능 업무 정렬",
+      "textPreview": "이전 가능 업무 정렬",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#10069F",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "이전 가능 업무 정렬"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "이전 가능 업무 정렬",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#10069F",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "이전 가능 업무 정렬",
+              "fontSize": 18,
+              "color": "#10069F",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/u5o7m9gz",
+      "id": "8",
+      "bbox": [
+        665,
+        190,
+        190,
+        70
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#10069F",
+      "lineColor": "#10069F",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/v6x8vexk",
+      "id": "9",
+      "bbox": [
+        675,
+        202,
+        170,
+        50
+      ],
+      "geometry": "rect",
+      "text": "k = 1…N 검토",
+      "textPreview": "k = 1…N 검토",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "k = 1…N 검토"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "k = 1…N 검토",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "k = 1…N 검토",
+              "fontSize": 18,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/rupw7ato",
+      "id": "10",
+      "bbox": [
+        940,
+        190,
+        215,
+        70
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#F2EBDD",
+      "lineColor": "#91723A",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6tgve5sj",
+      "id": "11",
+      "bbox": [
+        950,
+        202,
+        195,
+        50
+      ],
+      "geometry": "rect",
+      "text": "차량·위치별 삽입",
+      "textPreview": "차량·위치별 삽입",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#91723A",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "차량·위치별 삽입"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "차량·위치별 삽입",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#91723A",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "차량·위치별 삽입",
+              "fontSize": 18,
+              "color": "#91723A",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tw7e9kbu",
+      "id": "12",
+      "bbox": [
+        280,
+        225,
+        85,
+        0
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#10069F",
+      "lineWidth": 2.5
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/svydgfa9",
+      "id": "13",
+      "bbox": [
+        580,
+        225,
+        85,
+        0
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#10069F",
+      "lineWidth": 2.5
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jqpw3ats",
+      "id": "14",
+      "bbox": [
+        855,
+        225,
+        85,
+        0
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#10069F",
+      "lineWidth": 2.5
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ipwva5s7",
+      "id": "15",
+      "bbox": [
+        940,
+        365,
+        215,
+        70
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#CFCFCF",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5s7e5kby",
+      "id": "16",
+      "bbox": [
+        950,
+        377,
+        195,
+        50
+      ],
+      "geometry": "rect",
+      "text": "전체 경로 재계산",
+      "textPreview": "전체 경로 재계산",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#202124",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "전체 경로 재계산"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "전체 경로 재계산",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#202124",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "전체 경로 재계산",
+              "fontSize": 18,
+              "color": "#202124",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4rydcfad",
+      "id": "17",
+      "bbox": [
+        665,
+        365,
+        190,
+        70
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#CFCFCF",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/v25czqtw",
+      "id": "18",
+      "bbox": [
+        675,
+        377,
+        170,
+        50
+      ],
+      "geometry": "rect",
+      "text": "용량·시간 검증",
+      "textPreview": "용량·시간 검증",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#202124",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "용량·시간 검증"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "용량·시간 검증",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#202124",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "용량·시간 검증",
+              "fontSize": 18,
+              "color": "#202124",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/u1wv6lsb",
+      "id": "19",
+      "bbox": [
+        365,
+        365,
+        215,
+        70
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#91723A",
+      "lineColor": "#91723A",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/yxcfilw3",
+      "id": "20",
+      "bbox": [
+        375,
+        377,
+        195,
+        50
+      ],
+      "geometry": "rect",
+      "text": "k별 최적안 저장",
+      "textPreview": "k별 최적안 저장",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "k별 최적안 저장"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "k별 최적안 저장",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "k별 최적안 저장",
+              "fontSize": 18,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zylwrqdo",
+      "id": "21",
+      "bbox": [
+        75,
+        365,
+        205,
+        70
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#10069F",
+      "lineColor": "#10069F",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kzexkvu9",
+      "id": "22",
+      "bbox": [
+        85,
+        377,
+        185,
+        50
+      ],
+      "geometry": "rect",
+      "text": "투입 대수 결정",
+      "textPreview": "투입 대수 결정",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "투입 대수 결정"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "투입 대수 결정",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "투입 대수 결정",
+              "fontSize": 18,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/l0net0ve",
+      "id": "23",
+      "bbox": [
+        1047.5,
+        260,
+        0,
+        105
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#10069F",
+      "lineWidth": 2.5
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/mlwfm5cz",
+      "id": "24",
+      "bbox": [
+        855,
+        400,
+        85,
+        0
+      ],
+      "horizontalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#10069F",
+      "lineWidth": 2.5
+    },
+    {
+      "order": 25,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7m5wvadk",
+      "id": "25",
+      "bbox": [
+        580,
+        400,
+        85,
+        0
+      ],
+      "horizontalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#10069F",
+      "lineWidth": 2.5
+    },
+    {
+      "order": 26,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8nexovu5",
+      "id": "26",
+      "bbox": [
+        280,
+        400,
+        85,
+        0
+      ],
+      "horizontalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#10069F",
+      "lineWidth": 2.5
+    },
+    {
+      "order": 27,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9onex0vq",
+      "id": "27",
+      "bbox": [
+        170,
+        525,
+        940,
+        58
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#F2F2F2",
+      "lineWidth": 0
+    },
+    {
+      "order": 28,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/upwfq5cb",
+      "id": "28",
+      "bbox": [
+        190,
+        541,
+        900,
+        28
+      ],
+      "geometry": "rect",
+      "text": "차량은 출발 시 배송 물량을 보유하고 고객 방문 때 적재량이 감소",
+      "textPreview": "차량은 출발 시 배송 물량을 보유하고 고객 방문 때 적재량이 감소",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#10069F",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "차량은 출발 시 배송 물량을 보유하고 고객 방문 때 적재량이 감소"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "차량은 출발 시 배송 물량을 보유하고 고객 방문 때 적재량이 감소",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#10069F",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "차량은 출발 시 배송 물량을 보유하고 고객 방문 때 적재량이 감소",
+              "fontSize": 20,
+              "color": "#10069F",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 29,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/vq5wzadw",
+      "id": "29",
+      "bbox": [
+        64,
+        684,
+        1150,
+        18
+      ],
+      "geometry": "rect",
+      "text": "MOVE AI · VCM   |   07",
+      "textPreview": "MOVE AI · VCM   |   07",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "+mn-lt",
+        "color": "#6F6F6F",
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "MOVE AI · VCM   |   07"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "MOVE AI · VCM   |   07",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "color": "#6F6F6F",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "MOVE AI · VCM   |   07",
+              "fontSize": 11,
+              "color": "#6F6F6F",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

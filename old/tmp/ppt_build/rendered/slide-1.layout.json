@@ -1,0 +1,390 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/cjzkeb",
+    "id": "cjzkeb",
+    "slide": 1,
+    "layoutId": "d3424182-be43-4f38-8ac4-11a0ef8f0345",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "522530e4-9382-48dc-a73e-2352117d475d",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#08045F",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "d3424182-be43-4f38-8ac4-11a0ef8f0345",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "522530e4-9382-48dc-a73e-2352117d475d",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "522530e4-9382-48dc-a73e-2352117d475d",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/pwzi1w3a",
+      "id": "1",
+      "bbox": [
+        70,
+        138,
+        800,
+        52
+      ],
+      "geometry": "rect",
+      "text": "실시간 도로 변화에 대응하는",
+      "textPreview": "실시간 도로 변화에 대응하는",
+      "resolvedFontSize": 28,
+      "resolvedTextStyle": {
+        "fontSize": 28,
+        "typeface": "+mn-lt",
+        "color": "#91723A",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "실시간 도로 변화에 대응하는"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "실시간 도로 변화에 대응하는",
+          "resolvedTextStyle": {
+            "fontSize": 28,
+            "color": "#91723A",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "실시간 도로 변화에 대응하는",
+              "fontSize": 28,
+              "color": "#91723A",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2t8zqhkz",
+      "id": "2",
+      "bbox": [
+        70,
+        194,
+        1030,
+        86
+      ],
+      "geometry": "rect",
+      "text": "Re-scheduling 알고리즘",
+      "textPreview": "Re-scheduling 알고리즘",
+      "resolvedFontSize": 54,
+      "resolvedTextStyle": {
+        "fontSize": 54,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Re-scheduling 알고리즘"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Re-scheduling 알고리즘",
+          "resolvedTextStyle": {
+            "fontSize": 54,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Re-scheduling 알고리즘",
+              "fontSize": 54,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3uh0zmlk",
+      "id": "3",
+      "bbox": [
+        72,
+        302,
+        900,
+        40
+      ],
+      "geometry": "rect",
+      "text": "고객 순서는 유지할 것인가, 바꿀 것인가, 차량을 추가할 것인가",
+      "textPreview": "고객 순서는 유지할 것인가, 바꿀 것인가, 차량을 추가할 것인가",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#D8D8EE",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "고객 순서는 유지할 것인가, 바꿀 것인가, 차량을 추가할 것인가"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "고객 순서는 유지할 것인가, 바꿀 것인가, 차량을 추가할 것인가",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#D8D8EE",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "고객 순서는 유지할 것인가, 바꿀 것인가, 차량을 추가할 것인가",
+              "fontSize": 22,
+              "color": "#D8D8EE",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/grqho72t",
+      "id": "4",
+      "bbox": [
+        72,
+        398,
+        1080,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#91723A",
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hszixc3e",
+      "id": "5",
+      "bbox": [
+        72,
+        430,
+        800,
+        40
+      ],
+      "geometry": "rect",
+      "text": "Detour  ·  Re-route  ·  New truck",
+      "textPreview": "Detour  ·  Re-route  ·  New truck",
+      "resolvedFontSize": 26,
+      "resolvedTextStyle": {
+        "fontSize": 26,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Detour  ·  Re-route  ·  New truck"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Detour  ·  Re-route  ·  New truck",
+          "resolvedTextStyle": {
+            "fontSize": 26,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Detour  ·  Re-route  ·  New truck",
+              "fontSize": 26,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/up8zmhkn",
+      "id": "6",
+      "bbox": [
+        72,
+        608,
+        900,
+        30
+      ],
+      "geometry": "rect",
+      "text": "Delivery-only 운영 모델 | TDVRP 결과 + Updated road graph",
+      "textPreview": "Delivery-only 운영 모델 | TDVRP 결과 + Updated road graph",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#B9B9D5",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Delivery-only 운영 모델 | TDVRP 결과 + Updated road graph"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Delivery-only 운영 모델 | TDVRP 결과 + Updated road graph",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#B9B9D5",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Delivery-only 운영 모델 | TDVRP 결과 + Updated road graph",
+              "fontSize": 16,
+              "color": "#B9B9D5",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}
