@@ -1,0 +1,3 @@
+﻿vehicle_id,start_depot,customer_sequence,end_depot,route_tardiness,route_travel_time,route_distance,route_vehicle_cost,active_objective_value
+V001,D01,C002|C001,D01,0.0,52.2,27.0,100.0,27.0
+V002,D02,C003|C004,D02,0.0,45.45,22.0,100.0,22.0

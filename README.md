@@ -1,61 +1,388 @@
-# moveAI-VCM 실시간 Re-scheduling 엔진
+# moveAI-VCM
 
-다른 팀원이 산출한 **트럭별 TDVRP 최종 방문 순서**와 도로 backbone graph를 입력받아, 실시간 교통으로 그래프를 갱신하고 다음 대안을 비교합니다.
+Move AI VCM team TD-MDCVRPTW road-network and solver pipeline.
 
-1. `no_action`: 갱신 전 상세 경로를 유지(폐쇄 구간은 복구 대기)
-2. `detour`: 고객 순서는 유지하고 중간 도로 경로만 재탐색
-3. `reroute`: 기존 차량들의 고객 순서를 swap/relocate/reinsert
-4. `new_truck`: 지연 위험 업무를 최대 N대의 신규 트럭에 이관
+## TDVRPTW-Rerouting Road Network Pipeline
 
-초기 TDVRP를 다시 풀지 않습니다. 입력·출력 계약과 전체 알고리즘은 [docs/algorithm_flow.md](docs/algorithm_flow.md)에 정리했습니다.
+이 프로젝트는 국토교통부 ITS 국가표준 NODELINKDATA를 기반으로 대한민국 전국
+road backbone, depot/customer physical layer, hourly time-dependent OD matrix를
+생성한다. 최종적으로 MILP와 ALNS는 255-node physical graph를 직접 탐색하지 않고,
+사전 계산된 55-node TDVRP virtual arc network를 lookup한다.
 
-## 빠른 실행
+## Pipeline
 
-Python 3.11 이상에서 외부 패키지 없이 실행됩니다.
-
-```bash
-python -m moveai_vcm.cli \
-  --graph examples/backbone_graph.json \
-  --solution examples/tdvrp_solution.json \
-  --extras examples/extra_trucks.json \
-  --provider mock \
-  --traffic-snapshot examples/traffic_snapshot.json \
-  --updated-graph updated_graph.json \
-  --output rescheduling_results.json
+```text
+ITS NODELINKDATA
+-> src/network/build_backbone.py
+-> data/backbone/backbone_nodes.csv / backbone_edges.csv
+-> src/network/add_service_nodes.py
+-> data/physical/physical_nodes.csv / physical_edges.csv
+-> src/network/build_edge_time_profiles.py
+-> data/physical/edge_time_profiles.csv
+-> src/network/build_tdvrp_graph.py
+-> data/tdvrp/service_nodes.csv / td_od_matrix.csv / td_paths.csv
+-> src/model/build_demo_instance.py
+-> data/instances/instance_01/customers.csv / depots.csv / vehicles.csv / parameters.json
+-> src/alns/alns.py
+-> output/solutions/<OBJECTIVE>/best_solution.csv / best_schedule.csv / alns_log.csv
+-> disruption
+-> physical rerouting
+-> TDVRP reoptimization
 ```
 
-### UTIC 실시간 돌발정보
+## Current Milestone
 
-팀 backbone의 `original_link_ids`가 국토교통부 표준링크 ID이므로 UTIC의
-`linkId`/`lineLinkId`와 직접 결합할 수 있습니다. 키는 저장소에 넣지 않습니다.
+현재 완료된 network:
 
-```bash
-export UTIC_API_KEY="발급받은 키"
-python -m moveai_vcm.cli \
-  --graph graph \
-  --solution tdvrp_solution.json \
-  --extras extra_trucks.json \
-  --provider utic
-```
+- Physical nodes: 255 = `ROAD 200 + DEPOT 5 + CUSTOMER 50`
+- Physical directed edges: 1,528
+- Service nodes: 55 = `DEPOT 5 + CUSTOMER 50`
+- Hourly snapshots: 17 hours, `06:00-22:00`
+- OD-hour entries: 50,490 = `55 x 54 x 17`
+- Unreachable OD-hour pairs: 0
 
-UTIC 돌발 API는 사고·공사·통제의 실제 발생 여부를 제공하지만 실측 속도는 제공하지
-않습니다. 전면통제는 `closed=true`, 부분 장애는 기본속도의 55%라는 정책 추정값으로
-처리하고 결과 metadata에 `speed_value_type=policy_estimate`를 남깁니다. 실측 소통속도는
-UTIC 발급 시 안내된 지도 URL과 등록 IP가 추가로 필요합니다.
-
-## 테스트
+중요한 산출물:
 
 ```bash
-python -m unittest discover -s tests -v
+data/physical/edge_time_profiles.csv
+data/tdvrp/td_od_matrix.csv
+data/tdvrp/td_paths.csv
 ```
 
-## MVP 범위
+## Run
 
-- 한 번의 API snapshot에서 폐쇄·속도 저하 등 여러 disruption을 동시에 반영
-- directed graph와 서로 다른 출발/종료 depot 지원
-- 배송 수량, 차량 잔여 적재량, 최대 운행시간 검사
-- updated graph 위에서 상세 waypoint 경로 산출
-- 시간·거리·지연·정시율·운영비·변경량·재배정 수·신규 트럭 수 비교
-- Pareto dominance와 지연 1시간 절감 비용(ICER/WTP)으로 추천안 제시
+Backbone부터 다시 만들려면 원본 ITS shapefile이 필요하며 시간이 걸린다.
+현재는 이미 만들어진 backbone을 기준으로 Backbone 이후 pipeline을 실행할 수 있다.
 
-API 실패 arc는 직전 속도를 보존하고 오류를 metadata에 남깁니다. 해커톤 데모와 테스트는 재현 가능한 mock snapshot을 사용합니다.
+```bash
+python main.py all
+```
+
+단계별 실행:
+
+```bash
+python -m src.network.inspect_nodelink
+python -m src.network.build_backbone
+python -m src.network.validate_backbone
+python -m src.network.visualize_network
+python -m src.network.add_service_nodes
+python -m src.network.build_edge_time_profiles
+python -m src.network.build_tdvrp_graph
+python -m src.model.build_demo_instance
+python -m src.model.data_loader
+python -m src.model.validate_milp_small
+python main.py milp --objective DISTANCE --time-limit 30 --quiet
+python main.py --objective TARDINESS
+python main.py --objective ALL
+```
+
+## Data Layout
+
+```text
+data/
+  raw/
+    nodelink/
+    traffic/
+  backbone/
+    backbone_nodes.csv
+    backbone_edges.csv
+    backbone_nodes.geojson
+    backbone_edges.geojson
+  physical/
+    physical_nodes.csv
+    physical_edges.csv
+    edge_time_profiles.csv
+  tdvrp/
+    service_nodes.csv
+    td_od_matrix.csv
+    td_paths.csv
+  instances/
+    instance_01/
+      customers.csv
+      depots.csv
+      vehicles.csv
+      parameters.json
+```
+
+The original heavy NODELINKDATA files are left in `[2026-08-12]NODELINKDATA/`.
+Set `NODELINKDATA_DIR=/path/to/NODELINKDATA` to override this location.
+
+## Network Meaning
+
+`physical_nodes.csv` contains:
+
+- `ROAD`: 200 backbone road nodes
+- `DEPOT`: 5 Hyundai Glovis industrial-material depot nodes
+- `CUSTOMER`: 50 synthetic nationwide customer nodes
+
+`physical_edges.csv` contains:
+
+- `ROAD`: directed road backbone arcs
+- `CONNECTOR`: bidirectional access arcs from depot/customer nodes to nearby backbone nodes
+
+`backbone_edges.csv` preserves `original_link_ids` and `original_node_path` so the simplified
+edge can be traced back to the original ITS network.
+
+## Time-Dependent Travel Time
+
+The project uses hourly static snapshots, not continuous time-dependent shortest path.
+
+If a vehicle departs during hour `h`, every physical edge on that shortest path uses
+that same hour's edge travel time. For example:
+
+```text
+tau_ij^9 = shortest-path travel time from i to j using the 09:00-10:00 snapshot
+```
+
+If travel crosses 10:00, the edge weights are not changed mid-path.
+
+`edge_time_profiles.csv` schema:
+
+```text
+edge_id,hour,travel_time_min,speed_kph,data_source
+```
+
+Current profiles are prototype values derived from distance, road class, free-flow speed,
+and hourly congestion factors in `config/network.yaml`. The interface is replaceable through
+`get_edge_travel_time(edge_id, hour)`.
+
+## 55-Node TDVRP Graph
+
+The 55-node TDVRP graph is a virtual complete directed service-node graph.
+An arc such as:
+
+```text
+C001 -> C007
+```
+
+is not a physical road edge. It is a compressed shortest path over the 255-node physical graph,
+for example:
+
+```text
+C001 -> R017 -> R042 -> R061 -> C007
+```
+
+`td_od_matrix.csv` stores the travel-time lookup used by MILP/ALNS:
+
+```text
+from_node,to_node,hour,travel_time_min,distance_km
+```
+
+`td_paths.csv` stores the underlying physical path for rerouting/disruption analysis:
+
+```text
+from_node,to_node,hour,travel_time_min,distance_km,path_nodes,path_edges
+```
+
+MILP/ALNS should load `td_od_matrix.csv` into a lookup such as:
+
+```python
+travel_time[i][j][h]
+```
+
+If a vehicle leaves `C03` at `09:32`, use `h = 9` and lookup
+`travel_time["C03"]["C17"][9]`.
+
+## Demo Instance
+
+`src/model/build_demo_instance.py` creates a deterministic demo TD-MDVRPTW instance from
+the 55 service nodes:
+
+- Customers are assigned to the nearest depot by 08:00 TD OD travel time.
+- Customer demand `Q` is synthetic but deterministic, between 4 and 20 tons.
+- Customer time windows use five business-hour patterns: `08:00-12:00`, `09:00-15:00`,
+  `10:00-17:00`, `13:00-18:00`, and `08:00-16:00`.
+- Customer service time is demand-based.
+- Depot vehicles use 30-ton capacity. Fleet size is
+  `max(min_depot_fleet, ceil(assigned_demand * 1.25 / 30))`.
+
+The loadable model inputs are:
+
+```text
+data/tdvrp/service_nodes.csv
+data/tdvrp/td_od_matrix.csv
+data/tdvrp/td_paths.csv
+data/instances/instance_01/vehicles.csv
+data/instances/instance_01/parameters.json
+```
+
+## ALNS Objective Selection
+
+The ALNS solver uses a decision-maker-selected single objective. It does not use weighted
+multi-objective optimization by default.
+
+Allowed objective modes:
+
+```text
+TARDINESS
+TRAVEL_TIME
+DISTANCE
+VEHICLE_COST
+```
+
+For example, `ACTIVE_OBJECTIVE = DISTANCE` means:
+
+```text
+tardiness weight = 0
+travel_time weight = 0
+distance weight = 1
+vehicle_cost weight = 0
+```
+
+All performance metrics are still calculated for every solution:
+
+```text
+total_tardiness
+total_travel_time
+total_distance
+vehicle_cost
+used_vehicle_count
+```
+
+Only the selected objective is used for ALNS comparison, simulated annealing acceptance,
+operator rewards, insertion deltas, local-search improvements, and flexible end depot choice.
+
+Run one objective:
+
+```bash
+python main.py --objective TARDINESS
+python main.py --objective TRAVEL_TIME
+python main.py --objective DISTANCE
+python main.py --objective VEHICLE_COST
+```
+
+Run all four objectives independently:
+
+```bash
+python main.py --objective ALL
+```
+
+Override iterations or time-window mode:
+
+```bash
+python main.py --objective ALL --iterations 100
+python main.py --objective DISTANCE --time-window-mode HARD
+```
+
+The default `time_window_mode` is `SOFT`. Customer service start after `tw_end` is allowed and
+recorded as `tardiness`; it is not treated as route infeasibility. Hard feasibility still includes
+customer exactly once, no duplicate customer, vehicle capacity, valid vehicle/start depot/end
+depot, route connectivity through the TD OD lookup, vehicle operating horizon, and route duration.
+
+Objective selection changes only the value minimized by ALNS; it does not relax those hard
+feasibility constraints. Use `--time-window-mode HARD` only for experiments where lateness itself
+should make a route infeasible.
+
+ALNS outputs:
+
+```text
+output/solutions/TARDINESS/best_solution.csv
+output/solutions/TARDINESS/best_schedule.csv
+output/solutions/TARDINESS/alns_log.csv
+output/solutions/TRAVEL_TIME/...
+output/solutions/DISTANCE/...
+output/solutions/VEHICLE_COST/...
+output/experiments/objective_comparison.csv
+```
+
+## MILP Formulation
+
+`src/model/milp_solver.py` implements the flexible-end-depot TD-MDCVRPTW MILP from
+`TDVRP_Flexible_End_Depot_Final_Formulation.docx`.
+
+Core decision variables:
+
+```text
+x[v,i,j]        vehicle v directly traverses arc i -> j
+y[v,i]          customer i is assigned to vehicle v
+z[v]            vehicle v is used
+r[v,d]          vehicle v ends at depot d
+lambda[v,i,j,h] vehicle v departs i -> j during hour h
+a[v,i]          arrival time
+b[v,i]          customer service start time
+theta[v,i]      departure time
+T[i]            customer tardiness
+```
+
+The route structure is:
+
+```text
+fixed start depot d_v -> customer sequence -> flexible end depot d
+```
+
+The full 5-depot/50-customer MILP is intentionally large. The implementation is therefore
+validated on a small 2-depot/4-customer graph:
+
+```bash
+python -m src.model.validate_milp_small
+```
+
+Run the full-instance MILP when needed:
+
+```bash
+python main.py milp --objective TARDINESS --time-limit 60 --quiet
+python main.py milp --objective TRAVEL_TIME --time-limit 60 --quiet
+python main.py milp --objective DISTANCE --time-limit 60 --quiet
+python main.py milp --objective VEHICLE_COST --time-limit 60 --quiet
+```
+
+MILP outputs are written to:
+
+```text
+output/milp/<OBJECTIVE>/best_solution.csv
+output/milp/<OBJECTIVE>/best_schedule.csv
+output/milp/<OBJECTIVE>/summary.json
+```
+
+## Code Layout
+
+```text
+src/
+  network/
+    inspect_nodelink.py
+    build_backbone.py
+    validate_backbone.py
+    add_service_nodes.py
+    build_edge_time_profiles.py
+    build_tdvrp_graph.py
+    visualize_network.py
+  model/
+    build_demo_instance.py
+    data_loader.py
+    formulation.py
+    milp_solver.py
+    objective.py
+    problem_data.py
+    validate_milp_small.py
+    solution.py
+  alns/
+    alns.py
+    initial_solution.py
+    destroy_operators.py
+    repair_operators.py
+    local_search.py
+    evaluation.py
+    acceptance.py
+    operator_weights.py
+  rerouting/
+    disruption.py
+    physical_rerouting.py
+    reoptimization.py
+  utils/
+    config.py
+    io.py
+    time_utils.py
+```
+
+## Config
+
+Main network settings are in:
+
+```bash
+config/network.yaml
+config/tdvrp.yaml
+config/alns.yaml
+```
+
+`START_HOUR`, `END_HOUR`, congestion factors, and prototype free-flow speeds can be changed
+without editing the TDVRP graph builder.
