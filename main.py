@@ -25,7 +25,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="TDVRPTW-rerouting pipeline runner")
     parser.add_argument(
         "stage",
-        choices=["physical", "profiles", "tdvrp", "instance", "solve", "milp", "all"],
+        choices=["physical", "profiles", "tdvrp", "instance", "solve", "milp", "reroute", "all"],
         default=None,
         nargs="?",
         help="Pipeline stage to run",
@@ -78,6 +78,10 @@ def main() -> None:
         if args.quiet:
             command.append("--quiet")
         subprocess.run(command, cwd=PROJECT_ROOT, check=True)
+        return
+
+    if stage == "reroute":
+        run_module("src.rerouting.pipeline")
         return
 
     if args.objective:

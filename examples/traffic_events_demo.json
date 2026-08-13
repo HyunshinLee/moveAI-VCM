@@ -1,0 +1,10 @@
+{
+  "events": [
+    {
+      "event_id": "DEMO-CLOSURE-001",
+      "link_ids": ["3420029501"],
+      "description": "해커톤 데모용 전면통제",
+      "closed": true
+    }
+  ]
+}

@@ -30,6 +30,30 @@ ITS NODELINKDATA
 -> TDVRP reoptimization
 ```
 
+## Real-time graph update and rescheduling
+
+`src.rerouting` consumes the existing team artifacts without a separate route JSON:
+
+1. UTIC `linkId`/`lineLinkId` is joined to `physical_edges.original_link_ids`.
+2. All simultaneous events update the selected hours in `edge_time_profiles.csv`.
+3. The existing `build_td_matrices()` rebuilds detailed paths and the TD OD lookup.
+4. `best_solution.csv` is converted to the team's `Solution/Route` classes.
+5. `DETOUR`, `REROUTE`, and `NEW_TRUCK` alternatives are compared.
+
+The repository never stores an API key. For a live call:
+
+```bash
+export UTIC_API_KEY="issued-key"
+python -m src.rerouting.pipeline \
+  --solution output/solutions/TARDINESS/best_solution.csv \
+  --provider utic --hours 9 10 --max-new-trucks 3
+```
+
+`DETOUR` keeps vehicle assignment and customer order and only rebuilds physical paths.
+`REROUTE` applies the team's local-search operators on the updated TD matrix. `NEW_TRUCK`
+may activate multiple vehicles that are present in `vehicles.csv` but unused by the initial solution.
+The model is delivery-only: route load starts at total assigned demand and decreases at customers.
+
 ## Current Milestone
 
 현재 완료된 network:
