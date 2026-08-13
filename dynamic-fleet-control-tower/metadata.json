@@ -1,0 +1,6 @@
+{
+  "name": "Dynamic Fleet Control Tower",
+  "description": "AI-based Dynamic Vehicle Routing and Real-time Disruption Management System with scenario-based decision console.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
