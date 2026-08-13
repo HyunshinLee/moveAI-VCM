@@ -1,0 +1,47 @@
+BACKBONE_TARGET_NODES: 200
+NUM_DEPOTS: 5
+NUM_CUSTOMERS: 50
+
+START_HOUR: 6
+END_HOUR: 22
+TIME_INTERVAL_MIN: 60
+
+TRAFFIC_PROFILE_MODE: prototype
+CONNECTOR_K: 3
+CONNECTOR_DETOUR_FACTOR: 1.25
+
+FREE_FLOW_SPEED_KPH:
+  "101": 90
+  "102": 70
+  "103": 60
+  "105": 55
+  "106": 50
+  CONNECTOR: 35
+  DEFAULT: 45
+
+CONGESTION_FACTOR:
+  "0": 0.90
+  "1": 0.90
+  "2": 0.90
+  "3": 0.90
+  "4": 0.90
+  "5": 0.95
+  "6": 1.10
+  "7": 1.35
+  "8": 1.55
+  "9": 1.30
+  "10": 1.10
+  "11": 1.05
+  "12": 1.10
+  "13": 1.05
+  "14": 1.05
+  "15": 1.08
+  "16": 1.18
+  "17": 1.45
+  "18": 1.60
+  "19": 1.30
+  "20": 1.12
+  "21": 1.00
+  "22": 0.95
+  "23": 0.92
+

@@ -1,0 +1,5 @@
+﻿objective_mode,active_objective_value,total_tardiness,total_travel_time,total_distance,vehicle_cost,used_vehicle_count,feasible,runtime,iterations,solution_dir,validation_errors
+TARDINESS,0.0,0.0,13092.485409,15539.418709999998,3120000.0,26,True,25.180702208075672,50,/Users/hyunshinlee/Desktop/해커톤/pythonProject1/output/solutions/TARDINESS,[]
+TRAVEL_TIME,7241.443693,524.9766589999999,7241.443693,8541.977957000001,2760000.0,23,True,19.32313279202208,50,/Users/hyunshinlee/Desktop/해커톤/pythonProject1/output/solutions/TRAVEL_TIME,[]
+DISTANCE,8219.598357,439.91932600000007,7195.210393999998,8219.598357,2880000.0,24,True,22.690896832966246,50,/Users/hyunshinlee/Desktop/해커톤/pythonProject1/output/solutions/DISTANCE,[]
+VEHICLE_COST,2640000.0,396.204571,11607.410754999999,14114.264131999998,2640000.0,22,True,54.80503162497189,50,/Users/hyunshinlee/Desktop/해커톤/pythonProject1/output/solutions/VEHICLE_COST,[]

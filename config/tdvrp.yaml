@@ -1,0 +1,7 @@
+SERVICE_NODE_TYPES:
+  - DEPOT
+  - CUSTOMER
+
+TIME_DEPENDENT_MODE: hourly_snapshot
+LOOKUP_RULE: departure_hour_floor
+

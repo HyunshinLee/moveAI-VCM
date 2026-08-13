@@ -1,0 +1,28 @@
+# Python/cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Local environments and IDE metadata
+.venv/
+.idea/
+.DS_Store
+
+# Heavy raw ITS/NODELINKDATA inputs
+/*NODELINKDATA/
+/data/raw/
+
+# Generated/legacy outputs. Keep compact result artifacts below.
+/output/*
+!/output/figures/
+!/output/figures/physical_layer.png
+!/output/solutions/
+!/output/solutions/**
+!/output/experiments/
+!/output/experiments/**
+!/output/milp/
+!/output/milp/**
+
+# Local scratch
+a.py

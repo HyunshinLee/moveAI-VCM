@@ -1,0 +1,44 @@
+{
+  "instance_id": "instance_01",
+  "description": "Demo 5-depot, 50-customer TD-MDVRPTW instance with deterministic synthetic demand, time windows, and depot vehicle fleet.",
+  "service_node_count": 55,
+  "customer_count": 50,
+  "depot_count": 5,
+  "vehicle_count": 28,
+  "vehicle_capacity_ton": 30,
+  "capacity_slack_factor": 1.25,
+  "assignment_hour": 8,
+  "time_dependent_mode": "hourly_snapshot",
+  "depot_summary": [
+    {
+      "assigned_depot": "D01",
+      "customers": 14,
+      "total_demand_ton": 181.0,
+      "vehicle_count": 8
+    },
+    {
+      "assigned_depot": "D02",
+      "customers": 11,
+      "total_demand_ton": 112.0,
+      "vehicle_count": 5
+    },
+    {
+      "assigned_depot": "D03",
+      "customers": 11,
+      "total_demand_ton": 152.0,
+      "vehicle_count": 7
+    },
+    {
+      "assigned_depot": "D04",
+      "customers": 3,
+      "total_demand_ton": 30.0,
+      "vehicle_count": 2
+    },
+    {
+      "assigned_depot": "D05",
+      "customers": 11,
+      "total_demand_ton": 133.0,
+      "vehicle_count": 6
+    }
+  ]
+}

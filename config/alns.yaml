@@ -1,0 +1,14 @@
+active_objective: TARDINESS
+time_window_mode: SOFT
+random_seed: 20260813
+max_iterations: 50
+time_limit_sec:
+removal_min: 5
+removal_max: 15
+initial_temperature: 1.0
+cooling_rate: 0.995
+local_search_enabled: true
+local_search_max_moves: 2
+local_search_frequency: 25
+objective_tolerance: 1.0e-6
+operator_reaction: 0.2

@@ -1,0 +1,19 @@
+{
+  "objective_mode": "DISTANCE",
+  "solver_status": "OPTIMAL",
+  "sol_count": 2,
+  "mip_gap": 0.0,
+  "objective_value": 49.0,
+  "best_bound": 49.0,
+  "runtime": 0.02644033299293369,
+  "build_runtime": 0.011599957942962646,
+  "solve_runtime": 0.014839292038232088,
+  "feasible": true,
+  "total_tardiness": 0.0,
+  "total_travel_time": 97.65,
+  "total_distance": 49.0,
+  "vehicle_cost": 200.0,
+  "used_vehicle_count": 2,
+  "output_dir": "/Users/hyunshinlee/Desktop/해커톤/pythonProject1/output/milp/DISTANCE",
+  "validation_errors": []
+}
