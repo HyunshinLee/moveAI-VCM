@@ -1,0 +1,7 @@
+{
+  "observations": [
+    {"source": "D0", "target": "W1", "current_speed_kph": 8, "free_flow_speed_kph": 50, "closed": false, "provider": "mock", "confidence": 0.99},
+    {"source": "W2", "target": "C2", "current_speed_kph": 0, "free_flow_speed_kph": 50, "closed": true, "provider": "mock", "confidence": 1.0},
+    {"source": "C2", "target": "D1", "current_speed_kph": 15, "free_flow_speed_kph": 50, "closed": false, "provider": "mock", "confidence": 0.97}
+  ]
+}

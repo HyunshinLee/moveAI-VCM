@@ -1,0 +1,7 @@
+{
+  "vehicles": [
+    {"vehicle_id": "E1", "current_node": "D0", "end_depot": "D1", "capacity": 10, "current_load": 4, "available_at_s": 0, "max_route_time_s": 43200, "fixed_dispatch_cost": 70000, "cost_per_km": 800, "cost_per_hour": 20000},
+    {"vehicle_id": "E2", "current_node": "D0", "end_depot": "D1", "capacity": 10, "current_load": 4, "available_at_s": 0, "max_route_time_s": 43200, "fixed_dispatch_cost": 70000, "cost_per_km": 800, "cost_per_hour": 20000},
+    {"vehicle_id": "E3", "current_node": "D0", "end_depot": "D1", "capacity": 10, "current_load": 4, "available_at_s": 0, "max_route_time_s": 43200, "fixed_dispatch_cost": 70000, "cost_per_km": 800, "cost_per_hour": 20000}
+  ]
+}
