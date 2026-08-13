@@ -100,7 +100,8 @@ flowchart TD
 - `vehicle`: `vehicle_id`, `current_node`, `end_depot`, `capacity`, `current_load`
 - 선택 비용/시간: `available_at_s`, `max_route_time_s`, `fixed_dispatch_cost`, `cost_per_km`, `cost_per_hour`
 - `stops`: 순서가 확정된 업무 목록
-- stop의 `load_delta`: pickup은 양수, delivery는 음수
+- stop의 `delivery_quantity`: 고객에게 하차하는 배송 수량
+- 차량은 출발 시 배송 물량을 적재하며, 고객 방문 때마다 현재 적재량이 감소
 - stop의 `planned_arrival_s`는 초기해 대비 지연 계산 기준
 
 ## 5. 비교 지표와 추천

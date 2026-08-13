@@ -84,7 +84,7 @@ class Rescheduler:
                 max_delay = max(max_delay, delay)
                 if stop.due_time_s is not None and clock > stop.due_time_s:
                     late += 1
-                load += stop.load_delta
+                load -= stop.delivery_quantity
                 if load < -1e-9 or load > vehicle.capacity + 1e-9:
                     infeasible = f"{vehicle.vehicle_id}: capacity violation at {stop.node_id} ({load:.2f})"
                     break

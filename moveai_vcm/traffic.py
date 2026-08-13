@@ -3,8 +3,8 @@ from __future__ import annotations
 import json
 import os
 import time
+import xml.etree.ElementTree as ET
 from abc import ABC, abstractmethod
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
@@ -39,53 +39,90 @@ class MockTrafficProvider(TrafficProvider):
         ]
 
 
-class TomTomFlowProvider(TrafficProvider):
-    """Update each backbone arc from TomTom Flow Segment Data.
+class UticIncidentProvider(TrafficProvider):
+    """Apply UTIC real-time incidents to standard-node-link backbone arcs.
 
-    The nearest road segment to an arc midpoint is queried. For a production map,
-    persist provider segment IDs during backbone construction to avoid ambiguous
-    midpoint matching at intersections.
+    UTIC incident ``linkId``/``lineLinkId`` values are matched directly to the
+    MOCT standard link IDs retained in each compressed physical edge. Full
+    control events close an arc; partial incidents apply an explicit estimated
+    speed factor because this endpoint does not return measured link speed.
     """
 
-    BASE_URL = "https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json"
+    URL = "http://www.utic.go.kr/guide/imsOpenData.do"
+    FULL_CLOSURE_TERMS = ("전면통제", "전면 통제", "양방향 통제", "통행금지")
 
-    def __init__(self, api_key: str | None = None, *, workers: int = 8, timeout_s: float = 8.0):
-        self.api_key = api_key or os.environ.get("TOMTOM_API_KEY")
+    def __init__(
+        self,
+        api_key: str | None = None,
+        *,
+        timeout_s: float = 10.0,
+        partial_speed_factor: float = 0.55,
+    ):
+        self.api_key = api_key or os.environ.get("UTIC_API_KEY")
         if not self.api_key:
-            raise ValueError("TOMTOM_API_KEY is required")
-        self.workers = workers
+            raise ValueError("UTIC_API_KEY is required")
         self.timeout_s = timeout_s
+        self.partial_speed_factor = partial_speed_factor
 
-    def _observe_edge(self, graph: Graph, edge: Edge) -> TrafficObservation:
-        a, b = graph.nodes[edge.source], graph.nodes[edge.target]
-        point = f"{(a.lat + b.lat) / 2:.7f},{(a.lon + b.lon) / 2:.7f}"
-        url = f"{self.BASE_URL}?{urlencode({'key': self.api_key, 'point': point, 'unit': 'KMPH'})}"
+    @staticmethod
+    def _text(record: ET.Element, field: str) -> str:
+        value = record.findtext(field)
+        return "" if value in (None, "null") else value.strip()
+
+    @classmethod
+    def _link_ids(cls, record: ET.Element) -> set[str]:
+        raw = ";".join((cls._text(record, "linkId"), cls._text(record, "lineLinkId")))
+        return {
+            value.strip() for value in raw.replace(",", ";").split(";")
+            if value.strip()
+        }
+
+    def _fetch(self) -> ET.Element:
+        url = f"{self.URL}?{urlencode({'key': self.api_key})}"
         request = Request(url, headers={"User-Agent": "moveAI-VCM/1.0"})
         with urlopen(request, timeout=self.timeout_s) as response:
-            payload = json.loads(response.read().decode("utf-8"))["flowSegmentData"]
-        return TrafficObservation(
-            source=edge.source, target=edge.target,
-            current_speed_kph=float(payload["currentSpeed"]),
-            free_flow_speed_kph=float(payload["freeFlowSpeed"]),
-            closed=bool(payload.get("roadClosure", False)), provider="tomtom-flow",
-            metadata={"confidence": payload.get("confidence"), "frc": payload.get("frc")},
-        )
+            return ET.fromstring(response.read())
 
     def observe(self, graph: Graph, edges: Iterable[Edge]) -> list[TrafficObservation]:
+        link_to_edges: dict[str, list[Edge]] = {}
+        for edge in edges:
+            for link_id in edge.metadata.get("original_link_ids", []):
+                link_to_edges.setdefault(str(link_id), []).append(edge)
+
+        by_edge: dict[tuple[str, str], list[ET.Element]] = {}
+        for record in self._fetch().findall(".//record"):
+            for link_id in self._link_ids(record):
+                for edge in link_to_edges.get(link_id, []):
+                    by_edge.setdefault(edge.key, []).append(record)
+
         observations: list[TrafficObservation] = []
-        with ThreadPoolExecutor(max_workers=self.workers) as pool:
-            futures = {pool.submit(self._observe_edge, graph, edge): edge for edge in edges}
-            for future in as_completed(futures):
-                edge = futures[future]
-                try:
-                    observations.append(future.result())
-                except Exception as exc:  # keep prior graph value if one API request fails
-                    observations.append(TrafficObservation(
-                        source=edge.source, target=edge.target,
-                        current_speed_kph=edge.current_speed_kph or edge.base_speed_kph,
-                        provider="tomtom-flow-error", confidence=0.0,
-                        metadata={"error": str(exc)},
-                    ))
+        for edge_key, records in by_edge.items():
+            edge = graph.edges[edge_key]
+            titles = [self._text(record, "incidentTitle") for record in records]
+            controls = [self._text(record, "controlType") for record in records]
+            descriptions = " ".join(titles + controls)
+            closed = any(term in descriptions for term in self.FULL_CLOSURE_TERMS)
+            observations.append(TrafficObservation(
+                source=edge.source,
+                target=edge.target,
+                current_speed_kph=(
+                    None if closed else edge.base_speed_kph * self.partial_speed_factor
+                ),
+                closed=closed,
+                provider="utic-incident",
+                confidence=1.0 if closed else 0.6,
+                metadata={
+                    "incident_ids": sorted({
+                        self._text(record, "incidentId") for record in records
+                    }),
+                    "incident_titles": titles,
+                    "control_types": controls,
+                    "speed_value_type": "not_applicable" if closed else "policy_estimate",
+                    "matched_standard_link_ids": sorted(set().union(*(
+                        self._link_ids(record) for record in records
+                    )) & set(map(str, edge.metadata.get("original_link_ids", [])))),
+                },
+            ))
         return observations
 
 

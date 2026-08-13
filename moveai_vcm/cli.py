@@ -5,11 +5,11 @@ import json
 import os
 from pathlib import Path
 
-from .graph_io import dump_graph, dump_results, load_graph, load_tdvrp_solution
+from .graph_io import dump_graph, dump_results, load_graph, load_physical_graph, load_tdvrp_solution
 from .models import VehicleState
 from .pipeline import compile_initial_paths
 from .rescheduler import Rescheduler, ReschedulingConfig
-from .traffic import MockTrafficProvider, TomTomFlowProvider, TrafficGraphUpdater
+from .traffic import MockTrafficProvider, TrafficGraphUpdater, UticIncidentProvider
 
 
 def load_extra_vehicles(path: str | Path | None) -> list[VehicleState]:
@@ -21,10 +21,10 @@ def load_extra_vehicles(path: str | Path | None) -> list[VehicleState]:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="MOVE-AI real-time graph updater and rescheduler")
-    parser.add_argument("--graph", required=True)
+    parser.add_argument("--graph", required=True, help="Graph JSON or physical graph directory")
     parser.add_argument("--solution", required=True, help="TDVRP team's final sequence JSON")
     parser.add_argument("--extras", help="Available extra trucks JSON")
-    parser.add_argument("--provider", choices=["mock", "tomtom"], default="mock")
+    parser.add_argument("--provider", choices=["mock", "utic"], default="mock")
     parser.add_argument("--traffic-snapshot", help="Required for mock provider")
     parser.add_argument("--output", default="rescheduling_results.json")
     parser.add_argument("--updated-graph", default="updated_graph.json")
@@ -35,7 +35,8 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> None:
     args = build_parser().parse_args()
-    graph = load_graph(args.graph)
+    graph_path = Path(args.graph)
+    graph = load_physical_graph(graph_path) if graph_path.is_dir() else load_graph(graph_path)
     plans = load_tdvrp_solution(args.solution)
     initial_paths = compile_initial_paths(graph, plans)
 
@@ -44,7 +45,7 @@ def main() -> None:
             raise SystemExit("--traffic-snapshot is required for mock provider")
         provider = MockTrafficProvider(args.traffic_snapshot)
     else:
-        provider = TomTomFlowProvider(os.environ.get("TOMTOM_API_KEY"))
+        provider = UticIncidentProvider(os.environ.get("UTIC_API_KEY"))
     observations = TrafficGraphUpdater(provider).update(graph)
     dump_graph(graph, args.updated_graph)
 

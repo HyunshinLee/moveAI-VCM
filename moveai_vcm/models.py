@@ -59,7 +59,7 @@ class Graph:
 @dataclass(slots=True)
 class Stop:
     node_id: str
-    load_delta: float = 0.0  # pickup +, delivery -
+    delivery_quantity: float = 0.0
     service_time_s: float = 0.0
     planned_arrival_s: float | None = None
     due_time_s: float | None = None

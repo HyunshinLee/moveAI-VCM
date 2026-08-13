@@ -1,10 +1,55 @@
 from __future__ import annotations
 
 import json
+import csv
 from pathlib import Path
 from typing import Any
 
 from .models import Edge, Graph, Node, RoutePlan, Stop, VehicleState
+
+
+def load_physical_graph(directory: str | Path) -> Graph:
+    """Load the team's compressed standard-node-link backbone CSV files."""
+    directory = Path(directory)
+    nodes: dict[str, Node] = {}
+    with (directory / "physical_nodes.csv").open(encoding="utf-8-sig", newline="") as file:
+        for item in csv.DictReader(file):
+            node_type = item["node_type"]
+            kind = {
+                "road_backbone": "waypoint",
+                "depot": "depot",
+                "customer": "customer",
+            }.get(node_type, node_type)
+            nodes[item["node_id"]] = Node(
+                id=item["node_id"], lat=float(item["latitude"]),
+                lon=float(item["longitude"]), kind=kind,
+            )
+    edges: dict[tuple[str, str], Edge] = {}
+    with (directory / "physical_edges.csv").open(encoding="utf-8-sig", newline="") as file:
+        for item in csv.DictReader(file):
+            road_class = item["road_class"]
+            default_speed = 100.0 if road_class == "고속국도/고속도로" else 70.0
+            if item["edge_type"] != "road_backbone":
+                default_speed = 30.0
+            edge = Edge(
+                source=item["from_node"], target=item["to_node"],
+                distance_m=float(item["distance_m"]),
+                base_speed_kph=default_speed,
+                metadata={
+                    "physical_edge_id": item["physical_edge_id"],
+                    "source_edge_id": item["source_edge_id"],
+                    "edge_type": item["edge_type"],
+                    "road_class": road_class,
+                    "road_no": item["road_no"],
+                    "road_name": item["road_name"],
+                    "base_speed_source": "road_class_default",
+                    "original_link_ids": [
+                        value for value in item["original_link_ids"].split(";") if value
+                    ],
+                },
+            )
+            edges[edge.key] = edge
+    return Graph(nodes=nodes, edges=edges)
 
 
 def load_graph(path: str | Path) -> Graph:

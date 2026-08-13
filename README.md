@@ -24,16 +24,24 @@ python -m moveai_vcm.cli \
   --output rescheduling_results.json
 ```
 
-실시간 TomTom Flow API를 사용할 때는 `TOMTOM_API_KEY`를 설정하고 `--provider tomtom`을 사용합니다. 현재 어댑터는 각 backbone arc의 중점에서 가장 가까운 도로 구간을 질의합니다. 실제 서비스에서는 backbone 생성 시 TomTom segment ID 또는 map-matching 결과를 저장해 교차로 오매칭을 줄이는 것이 좋습니다.
+### UTIC 실시간 돌발정보
+
+팀 backbone의 `original_link_ids`가 국토교통부 표준링크 ID이므로 UTIC의
+`linkId`/`lineLinkId`와 직접 결합할 수 있습니다. 키는 저장소에 넣지 않습니다.
 
 ```bash
-export TOMTOM_API_KEY="..."
+export UTIC_API_KEY="발급받은 키"
 python -m moveai_vcm.cli \
-  --graph backbone_graph.json \
+  --graph graph \
   --solution tdvrp_solution.json \
   --extras extra_trucks.json \
-  --provider tomtom
+  --provider utic
 ```
+
+UTIC 돌발 API는 사고·공사·통제의 실제 발생 여부를 제공하지만 실측 속도는 제공하지
+않습니다. 전면통제는 `closed=true`, 부분 장애는 기본속도의 55%라는 정책 추정값으로
+처리하고 결과 metadata에 `speed_value_type=policy_estimate`를 남깁니다. 실측 소통속도는
+UTIC 발급 시 안내된 지도 URL과 등록 IP가 추가로 필요합니다.
 
 ## 테스트
 
@@ -45,7 +53,7 @@ python -m unittest discover -s tests -v
 
 - 한 번의 API snapshot에서 폐쇄·속도 저하 등 여러 disruption을 동시에 반영
 - directed graph와 서로 다른 출발/종료 depot 지원
-- pickup(+)/delivery(-), 차량 용량, 최대 운행시간 검사
+- 배송 수량, 차량 잔여 적재량, 최대 운행시간 검사
 - updated graph 위에서 상세 waypoint 경로 산출
 - 시간·거리·지연·정시율·운영비·변경량·재배정 수·신규 트럭 수 비교
 - Pareto dominance와 지연 1시간 절감 비용(ICER/WTP)으로 추천안 제시
